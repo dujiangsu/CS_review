@@ -305,7 +305,38 @@ void useBigger(const string \&s1, const string \&s2, bool (*pf)(const string\&, 
 	\item \textbf{mutable}一个可变数据成员永远不会是const，即使他是const对象的成员。对于 void func() const{}函数是一个只读函数，但是对于有mutable声明的变量，也可以修改。
 	\item C++11, 类内初始值。
 	\item 返回*this的成员函数，return*this，就可以 myScreen.move(4,0).set("#").
-	\item  
+	\item 类类型，即使成员函数完全一样，不同的类就是不同的类型。
+	\item 类声明。
+	\item 可以把其他类定义成友元，也可以把其他类的成员函数定义为友元. friend class Windows\_mgr; friend void Window\_mgr::clear(ScreenIndex)
+	\item \textbf{委托构造函数}.算是语法糖吧,没啥意思.
+	\item 在实际中,如果定义了其他构造函数,最好也提供一个默认构造函数.
+	\item 可以在类成员函数前添加\textbf{explicit}禁止隐式的数据类型转换.
+	\item 当一个类,1. 全部的成员都是public的,2. 没有定义任何构造函数, 3. 没有类内初始值, 4.没有基类,没有virtual函数,就叫\textbf{聚合类}.可以直接初始化.
+	\item \textbf{static}静态成员,静态成员存在于任何对象之外,为类的所有对象所共享. static只出现在类的内部.
 \end{itemize}
 
+\subsection{IO库}
+C++不直接处理输入输出,而是定义了标准库来处理IO,这些类型支持从数据读取,向设备写入.设备可以是文件,控制台窗口.
+区别于第一章进行记录.iostream定义了用于读写流的,fstream定义了读写文件,sstream读写内存string对象的类型.
+
+ifstream和istringstream都是继承自istream的. 因此在调用上是一样的.
+
+IO操作容易发生错误,有时候也需要知道为什么发生错误,然后选择正确的处理方式,因此iostream提供了流状态的查询.发生错误了就用setstate把对应位置置位,然后cin.eof()等函数查看到底是怎么错的,继续做.
+\begin{lstlisting}[caption={}]
+	auto old\_state = cin.rdstate();
+	cin.clear(); 复位
+	process_input(cin);
+	cin.setstate(old\_state); 表示发生对应错误
+	cin.clear(cin.rdstate \& ~cin.failbit \& ~cin.badbit); ~是位求反.
+\end{lstlisting}
+
+endl, flush, ends, unitbuf, nounitbuf,
+
+打开文件可能出错,因此if(file),检查一下是对的,其实就是检查前文的rdstate,有一个错,就是错.应该是与操作.不同的错误发生相应的置位.
+
+in读模式,out写模式,app每次写定位到文件末尾,ate打开文件后立即到文件末尾,trunc截断文件,binary以二进制方式打开文件io. 可以指定多个模式.
+
+\textbf{String流}定义了三个类型来支持内存IO,把string当作一个IO流.
+
+\subsection{顺序容器}
 
