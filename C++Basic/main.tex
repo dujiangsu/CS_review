@@ -2,7 +2,44 @@
 \CTEXsetup[format={\Large\bfseries}]{section}
 \usepackage{geometry}
 \usepackage{graphicx}
-\geometry{a4paper,scale=0.9}
+\usepackage{tcolorbox}
+\usepackage{listings}
+%\usepackage[usenames,dvipsnames]{xcolor}
+
+
+\geometry{a4paper,scale=0.8}
+
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+\lstset{
+	backgroundcolor=\color{lightgray}, 
+	basicstyle = \footnotesize,       
+	breakatwhitespace = false,        
+	breaklines = true,                 
+	captionpos = b,                    
+	commentstyle = \color{mygreen}\bfseries,
+	extendedchars = false,             
+	frame =shadowbox, 
+	framerule=0.5pt,
+	keepspaces=true,
+	keywordstyle=\color{blue}\bfseries, % keyword style
+	language = C++,                     % the language of code
+	otherkeywords={string}, 
+	numbers=left, 
+	numbersep=5pt,
+	numberstyle=\tiny\color{mygray},
+	rulecolor=\color{black},         
+	showspaces=false,  
+	showstringspaces=false, 
+	showtabs=false,    
+	stepnumber=1,         
+	stringstyle=\color{mymauve},        % string literal style
+	tabsize=2,          
+	title=\lstname                      
+}
+
 
 \title{C++作为语言的基础部分学习}
 \author{Jiangsu Du}
@@ -10,9 +47,11 @@
 	
 \begin{document}
 \maketitle
+学习的教材为《C++ Primer(第五版)》
 \tableofcontents
 
 
 \input{section/jibenyufa}
+\input{section/problems}
 
 \end{document}
