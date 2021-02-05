@@ -304,7 +304,7 @@ void useBigger(const string \&s1, const string \&s2, bool (*pf)(const string\&, 
 	\item 成员函数也可以被重载。
 	\item \textbf{mutable}一个可变数据成员永远不会是const，即使他是const对象的成员。对于 void func() const{}函数是一个只读函数，但是对于有mutable声明的变量，也可以修改。
 	\item C++11, 类内初始值。
-	\item 返回*this的成员函数，return*this，就可以 myScreen.move(4,0).set("#").
+	\item 返回*this的成员函数，return*this，就可以 myScreen.move(4,0).set("\#").
 	\item 类类型，即使成员函数完全一样，不同的类就是不同的类型。
 	\item 类声明。
 	\item 可以把其他类定义成友元，也可以把其他类的成员函数定义为友元. friend class Windows\_mgr; friend void Window\_mgr::clear(ScreenIndex)
@@ -339,8 +339,23 @@ in读模式,out写模式,app每次写定位到文件末尾,ate打开文件后立
 \textbf{String流}定义了三个类型来支持内存IO,把string当作一个IO流.
 
 \subsection{顺序容器}
+\subsubsection{简介}
+顺序容器的元素与元素加入容器的位置相对应。而有序和无序关联容器则根据关键字的值来存储元素。
+不同的实现在：
+	1. 添加删除容器的代价，2.非顺序访问容器时的代价都有折衷。链表实现和数组实现。
+\begin{itemize}
+	\item vector，可变大小，在尾部之外插入或者删除可能很慢。
+	\item deque，双端队列，支持快速随机访问，在头尾插入很快。
+	\item list，双向链表，只支持双向顺序访问，任意位置插入都很快。
+	\item forward\_list，单向链表，只单向访问，任意位置。
+	\item array，固定大小，快速访问，不支持插入删除。
+	\item string，与vector相似，但只原来保存字符。
+	\item 迭代器是list和vector共同的操作，如果具体情况下不能确定用哪个，用迭代器访问，必要时候选择具体的数据结构。
+	\item 
+\end{itemize}
 
-vector
+\subsubsection{容器库概览}
 
-内存如何
+
+
 
