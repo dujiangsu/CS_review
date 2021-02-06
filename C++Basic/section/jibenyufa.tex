@@ -351,11 +351,49 @@ in读模式,out写模式,app每次写定位到文件末尾,ate打开文件后立
 	\item array，固定大小，快速访问，不支持插入删除。
 	\item string，与vector相似，但只原来保存字符。
 	\item 迭代器是list和vector共同的操作，如果具体情况下不能确定用哪个，用迭代器访问，必要时候选择具体的数据结构。
-	\item 
 \end{itemize}
 
 \subsubsection{容器库概览}
+提供的元素类型必须有构造函数。如何插入元素：
+\begin{itemize}
+	\item push\_back()和push\_front,
+	\item 在容器的特定位置添加元素，insert(),对于数组类型，插入到任何位置都可以，但是很耗时。svec.insert(svec.begin(),"Hello!");
+	\item 插入范围内元素，svec.insert(svec.end(),10,"Hello");返回值是插入后的首元素。
+	\item \textbf{emplace()}, C++11新标准，调用emplace与insert不同，是将参数传递给元素类型的构造函数。emplace成员使用这些参数在容器管理的内存空间中直接构造函数，而不是拷贝。emplace是利用了构造函数。
+	\item 赋值，assign，seq.assign(begin(),end());
+	\item 访问元素，begin() end() front() back(),需要注意的是end()指向的是最后一个的后一个元素。
+	\item 也可以通过下标操作,但是下标运算符需要确保不越界。svec.at(0),可以使用at函数来完成，如果越界会抛出out of range
+	\item 删除首位元素，pop\_back(), pop\_front() 
+	\item 从容器内部删除一个元素，erase(it),返回下一个元素；删除多个元素，slist.erase(begin(),end())
+	\item forward\_list()具有自己的插入删除操作。	
+	\item 改变容器大小，resize(),主要是array的方法，其他都是自动的，然后具体的添加有自己的规则。
+	\item 因为动态容器会改变内存结构，存储结构被重新分配，因此容器操作会使迭代器失效。必须保证每次改变容器的操作之后都必须重新定位迭代器。
+	因此只要添加删除元素，就要在每个迭代步中更新迭代器，引用或指针。更新的方式就是用添加删除函数的返回值。比如insert之后,返回的是被插入的当前值，需要向后移动两个掠过新加入的值。不要保存end()的返回值。
+	\item vector对象是如何增长的。需要从旧位置移动到新空间中，然后添加新元素，释放旧存储空间。
+	\item capacity()告诉我们不扩张空间的情况下可以容纳多少个元素和reserve()操作允许我们通知容器它应该准备保存多少个元素。
+\end{itemize}
 
+\subsubsection{额外的string操作}
+\begin{itemize}
+	\item substr操作，string s("hello world"); string s2 = s.substr(0,5);
+	\item insert和erase有更多的操作
+	\item append和replace，append在string末尾插入操作，relpace调用的是erase和insert的简写形式。
+	\item string搜索操作，一共有六个搜索操作，每个搜索操作有四个重载版本。返回匹配到的下标。string name("AnnaBelle"); auto pos1 = name.find("Anna"); 大小写敏感的。
+	还有find\_first\_of和find\_first\_not\_of,在s中查找args中任意一个字符第一次出现的位置。
+	\item compare函数，比较等于，大于还是小于。
+	\item 数值转换。to\_string(),将整数i转换成字符的形式；stod()将字符串s转换为浮点数。
+\end{itemize}
 
+\subsubsection{容器适配器}
+顺序容器适配器。有点儿像卷积神经网络，就是以数组或者链表的数据结构，实现堆栈，队列以及优先级队列。 stack，queue，和priority\_queue。
+
+$stack<int> stk(deq);$ deq是一个$deque<int>$，用deq来初始化一个新的stack。
+
+默认情况下，stack和queue是deque是实现的；priority\_queue是在vector之上实现的，但是也可以在创建适配器时将一个命名的顺序容器作为第二个类型参数，来重载默认容器类型。
+$stack<string,vector<string>> str\_stk;$
+
+对于一个给定的适配器，能用哪些容器是有限制的。换句话说，其实大多数容器都可以像适配器一样用，适配器只是添加了束缚，使其行为更加贴切于某种抽象数据结构。
+
+\subsection{泛型算法}
 
 

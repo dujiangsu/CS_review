@@ -29,4 +29,6 @@
 \contentsline {subsection}{\numberline {2.8}顺序容器}{13}%
 \contentsline {subsubsection}{\numberline {2.8.1}简介}{13}%
 \contentsline {subsubsection}{\numberline {2.8.2}容器库概览}{13}%
-\contentsline {section}{\numberline {3}一些问题}{13}%
+\contentsline {subsubsection}{\numberline {2.8.3}额外的string操作}{14}%
+\contentsline {subsubsection}{\numberline {2.8.4}容器适配器}{14}%
+\contentsline {section}{\numberline {3}一些问题}{14}%
