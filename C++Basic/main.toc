@@ -31,4 +31,5 @@
 \contentsline {subsubsection}{\numberline {2.8.2}容器库概览}{13}%
 \contentsline {subsubsection}{\numberline {2.8.3}额外的string操作}{14}%
 \contentsline {subsubsection}{\numberline {2.8.4}容器适配器}{14}%
-\contentsline {section}{\numberline {3}一些问题}{14}%
+\contentsline {subsection}{\numberline {2.9}泛型算法}{14}%
+\contentsline {section}{\numberline {3}一些问题}{15}%
